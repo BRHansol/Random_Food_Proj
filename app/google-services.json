@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "921347528477",
+    "project_id": "randomfoodproject-72289",
+    "storage_bucket": "randomfoodproject-72289.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921347528477:android:5250a489457f11b72033f4",
+        "android_client_info": {
+          "package_name": "com.example.random_food_proj"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6kAlFvsg0pTQJC9LW2OPm9ebXZhS0dSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4EFEA">
+
+    <!-- HEADER -->
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/b1"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Back -->
+            <ImageView
+                android:id="@+id/icBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/ic_back1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FILTER"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="16dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+    <!-- CARD CONTAINER -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardFilter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- ระดับความเผ็ด -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ระดับความเผ็ด"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cbSpicy"
+                        android:text="เผ็ด"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cbNotSpicy"
+                        android:text="ไม่เผ็ด"
+                        android:layout_marginStart="16dp"/>
+                </LinearLayout>
+
+                <!-- ประเภทเนื้อสัตว์ -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ประเภทเนื้อสัตว์"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox android:id="@+id/cbPork" android:text="หมู" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <CheckBox android:id="@+id/cbChicken" android:text="ไก่" android:layout_marginStart="16dp" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <CheckBox android:id="@+id/cbBeef" android:text="เนื้อ" android:layout_marginStart="16dp" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <CheckBox android:id="@+id/cbShrimp" android:text="กุ้ง" android:layout_marginStart="16dp" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <CheckBox android:id="@+id/cbSquid" android:text="หมึก" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <CheckBox android:id="@+id/cbFish" android:text="ปลา" android:layout_marginStart="16dp" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <CheckBox android:id="@+id/cbSeafood" android:text="รวมทะเล" android:layout_marginStart="16dp" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <CheckBox android:id="@+id/cbVegetarian" android:text="ไม่มีเนื้อสัตว์" android:layout_marginStart="16dp" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- ปุ่มบันทึก -->
+                <Button
+                    android:id="@+id/btnSaveFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:text="บันทึกรายการ"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#E28A57"
+                    android:layout_marginTop="40dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

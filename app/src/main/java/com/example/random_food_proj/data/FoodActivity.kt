@@ -20,9 +20,9 @@ class FoodActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val food = Food("T01","ข้าวผัด", "Thaifood")
+        val food = Food("J01","ราเมง", "อาหารญี่ปุ่น")
         db.collection("foods")
-            .document("T05")
+            .document("J01")
             .set(food)
             .addOnSuccessListener {
                 println("เพิ่มข้อมูลสำเร็จ")

@@ -1,6 +1,8 @@
 package com.example.random_food_proj
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,6 +34,24 @@ class MymenuList : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+    private fun setupBottomBar() {
+        // Handle the Add button in the bottom bar
+        findViewById<ImageView>(R.id.btnAdd)?.setOnClickListener {
+            val intent = Intent(this, AddMenuActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Handle Home button (stays here or refreshes)
+        findViewById<ImageView>(R.id.btnHome)?.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Add logic for Profile if you have a ProfileActivity
+        findViewById<ImageView>(R.id.btnProfile)?.setOnClickListener {
+            // Already on Home
         }
     }
 }

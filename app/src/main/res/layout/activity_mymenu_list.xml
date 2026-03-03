@@ -50,24 +50,24 @@
 
             <Button
                 android:layout_width="120dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:backgroundTint="#E08A5B"
                 android:text="เมนูของคุณ"
                 android:textColor="#000" />
 
             <Button
-                android:layout_width="120dp"
-                android:layout_height="40dp"
+                android:layout_width="130dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="5dp"
                 android:backgroundTint="#DDD"
                 android:text="รายการโปรด" />
 
             <Button
                 android:layout_width="120dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="5dp"
                 android:backgroundTint="#DDD"
-                android:text="ประวัติการสุ่ม" />
+                android:text="ประวัติ" />
         </LinearLayout>
         <!-- Title -->
         <TextView

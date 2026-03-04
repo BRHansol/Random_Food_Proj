@@ -7,55 +7,19 @@ import com.google.firebase.firestore.FirebaseFirestore
 class FoodRepository {
 
     private val db = FirebaseFirestore.getInstance()
-
     fun getAllFoods(onResult: (List<Food>) -> Unit) {
         db.collection("foods")
-            .addSnapshotListener { snapshot, error ->
-                if (error != null) {
-                    Log.e("FoodRepository", "getAllFoods listen failed.", error)
-                    return@addSnapshotListener
-                }
-                
-                val list = mutableListOf<Food>()
-                snapshot?.forEach { doc ->
-                    try {
-                        val food = doc.toObject(Food::class.java)
-                        food.id = doc.id
-                        list.add(food)
-                    } catch (e: Exception) {
-                        Log.e("FoodRepository", "Error converting doc to Food", e)
-                    }
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val list = snapshot.map { doc ->
+                    val food = doc.toObject(Food::class.java)
+                    food.id = doc.id
+                    food
                 }
                 onResult(list)
             }
-    }
-
-    fun getByCategory(category: String, onResult: (List<Food>) -> Unit) {
-        Log.d("FoodRepository", "Querying Firestore for category: '$category'")
-        
-        db.collection("foods")
-            .whereEqualTo("category", category)
-            .addSnapshotListener { snapshot, error ->
-                if (error != null) {
-                    Log.e("FoodRepository", "getByCategory listen failed", error)
-                    return@addSnapshotListener
-                }
-                
-                val list = mutableListOf<Food>()
-                snapshot?.forEach { doc ->
-                    try {
-                        val food = doc.toObject(Food::class.java)
-                        food.id = doc.id
-                        list.add(food)
-                    } catch (e: Exception) {
-                        Log.e("FoodRepository", "Error converting doc to Food", e)
-                    }
-                }
-                
-                Log.d("FoodRepository", "Data received: ${list.size} items found for '$category'")
-                
-                // Always return the list, even if empty, so the UI can update
-                onResult(list)
+            .addOnFailureListener {
+                onResult(emptyList())
             }
     }
 
@@ -66,4 +30,54 @@ class FoodRepository {
     fun updateFood(food: Food) {
         db.collection("foods").document(food.id).set(food)
     }
+
+//    fun getAllFoods(onResult: (List<Food>) -> Unit) {
+//        db.collection("foods")
+//            .addSnapshotListener { snapshot, error ->
+//                if (error != null) {
+//                    Log.e("FoodRepository", "getAllFoods listen failed.", error)
+//                    onResult(emptyList())
+//                    return@addSnapshotListener
+//                }
+//
+//                val list = mutableListOf<Food>()
+//                snapshot?.forEach { doc ->
+//                    try {
+//                        val food = doc.toObject(Food::class.java)
+//                        food.id = doc.id
+//                        list.add(food)
+//                    } catch (e: Exception) {
+//                        Log.e("FoodRepository", "Error converting doc to Food", e)
+//                    }
+//                }
+//                // Always return the list, even if empty
+//                onResult(list)
+//            }
+//    }
+
+//    fun getByCategory(category: String, onResult: (List<Food>) -> Unit) {
+//        db.collection("foods")
+//            .whereEqualTo("category", category)
+//            .addSnapshotListener { snapshot, error ->
+//                if (error != null) {
+//                    Log.e("FoodRepository", "getByCategory listen failed", error)
+//                    onResult(emptyList())
+//                    return@addSnapshotListener
+//                }
+//
+//                val list = mutableListOf<Food>()
+//                snapshot?.forEach { doc ->
+//                    try {
+//                        val food = doc.toObject(Food::class.java)
+//                        food.id = doc.id
+//                        list.add(food)
+//                    } catch (e: Exception) {
+//                        Log.e("FoodRepository", "Error converting doc to Food", e)
+//                    }
+//                }
+//                onResult(list)
+//            }
+//    }
+
+
 }

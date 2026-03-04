@@ -2,6 +2,7 @@ package com.example.random_food_proj
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.random_food_proj.data.MenuList
 import com.example.random_food_proj.data.MenuListAdapter
 class MymenuList : AppCompatActivity() {
+    val btnMenu = findViewById<Button>(R.id.btnMenu)
+    val btnFavorite = findViewById<Button>(R.id.btnFavorite)
+    val btnHistory = findViewById<Button>(R.id.btnHistory)
     lateinit var recycler: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,26 @@ class MymenuList : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        btnMenu.setOnClickListener {
+
+            val intent = Intent(this, MymenuList::class.java)
+            startActivity(intent)
+
+        }
+
+        btnFavorite.setOnClickListener {
+
+            val intent = Intent(this, favorite::class.java)
+            startActivity(intent)
+
+        }
+
+        btnHistory.setOnClickListener {
+
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+
         }
     }
     private fun setupBottomBar() {

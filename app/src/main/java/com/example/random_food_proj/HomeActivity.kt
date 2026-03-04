@@ -60,8 +60,8 @@ class HomeActivity : AppCompatActivity() {
 
         // Add logic for Profile if you have a ProfileActivity
         findViewById<ImageView>(R.id.btnProfile)?.setOnClickListener {
-            // val intent = Intent(this, ProfileActivity::class.java)
-            // startActivity(intent)
+             val intent = Intent(this, MymenuList::class.java)
+             startActivity(intent)
         }
     }
 }

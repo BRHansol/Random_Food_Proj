@@ -10,9 +10,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.random_food_proj.data.MenuList
-import com.example.random_food_proj.data.MenuListAdapter
-class MymenuList : AppCompatActivity() {
+import com.example.random_food_proj.data.HistoryAdapter
+import com.example.random_food_proj.data.HistoryModel
+import com.example.random_food_proj.data.TYPE_HEADER
+import com.example.random_food_proj.data.TYPE_ITEM
+
+class HistoryActivity : AppCompatActivity() {
     val btnMenu = findViewById<Button>(R.id.btnMenu)
     val btnFavorite = findViewById<Button>(R.id.btnFavorite)
     val btnHistory = findViewById<Button>(R.id.btnHistory)
@@ -20,19 +23,25 @@ class MymenuList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_mymenu_list)
+        setContentView(R.layout.activity_history)
+        val list = ArrayList<HistoryModel>()
 
-        recycler = findViewById(R.id.recyclerMenu)
-        val list = ArrayList<MenuList>()
+        list.add(HistoryModel(TYPE_HEADER,"12 ม.ค. 69"))
+        list.add(HistoryModel(TYPE_ITEM,"ต้มยำกุ้ง"))
 
-        list.add(MenuList("ข้าวเช้า",5))
-        list.add(MenuList("ข้าวเที่ยง",3))
+        list.add(HistoryModel(TYPE_HEADER,"11 ม.ค. 69"))
+        list.add(HistoryModel(TYPE_ITEM,"ยำวุ้นเส้น"))
+        list.add(HistoryModel(TYPE_ITEM,"ส้มตำปลาร้า"))
+        list.add(HistoryModel(TYPE_ITEM,"ผัดไทย"))
 
-        recycler.layoutManager =
-            LinearLayoutManager(this)
+        list.add(HistoryModel(TYPE_HEADER,"10 ม.ค. 69"))
+        list.add(HistoryModel(TYPE_ITEM,"ข้าวไข่เจียว"))
+        list.add(HistoryModel(TYPE_ITEM,"พะโล้หมู"))
+        list.add(HistoryModel(TYPE_ITEM,"ข้าวซอย"))
+        list.add(HistoryModel(TYPE_ITEM,"ปอเปี๊ยะทอด"))
 
-        recycler.adapter =
-            MenuListAdapter(list)
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = HistoryAdapter(list)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -75,7 +84,8 @@ class MymenuList : AppCompatActivity() {
 
         // Add logic for Profile if you have a ProfileActivity
         findViewById<ImageView>(R.id.btnProfile)?.setOnClickListener {
-            // Already on Home
+            val intent = Intent(this, MymenuList::class.java)
+            startActivity(intent)
         }
     }
 }

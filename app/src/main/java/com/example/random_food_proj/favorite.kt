@@ -10,30 +10,32 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.random_food_proj.data.MenuList
-import com.example.random_food_proj.data.MenuListAdapter
-class MymenuList : AppCompatActivity() {
+import com.example.random_food_proj.data.Favorite
+import com.example.random_food_proj.data.FavoriteAdapter
+
+class favorite : AppCompatActivity() {
     val btnMenu = findViewById<Button>(R.id.btnMenu)
     val btnFavorite = findViewById<Button>(R.id.btnFavorite)
     val btnHistory = findViewById<Button>(R.id.btnHistory)
     lateinit var recycler: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_mymenu_list)
 
-        recycler = findViewById(R.id.recyclerMenu)
-        val list = ArrayList<MenuList>()
-
-        list.add(MenuList("ข้าวเช้า",5))
-        list.add(MenuList("ข้าวเที่ยง",3))
-
+        setContentView(R.layout.activity_favorite)
+        recycler = findViewById(R.id.recyclerFavorite)
+        val list = ArrayList<Favorite>()
+        list.add(Favorite("ต้มยำกุ้ง"))
+        list.add(Favorite("ยำวุ้นเส้น"))
+        list.add(Favorite("ส้มตำปลาร้า"))
+        list.add(Favorite("ข้าวไข่เจียว"))
+        list.add(Favorite("ผะโล้หมู"))
         recycler.layoutManager =
             LinearLayoutManager(this)
-
         recycler.adapter =
-            MenuListAdapter(list)
+            FavoriteAdapter.FavoriteAdapter(list)
 
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_favorite)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -75,7 +77,8 @@ class MymenuList : AppCompatActivity() {
 
         // Add logic for Profile if you have a ProfileActivity
         findViewById<ImageView>(R.id.btnProfile)?.setOnClickListener {
-            // Already on Home
+             val intent = Intent(this, MymenuList::class.java)
+             startActivity(intent)
         }
     }
 }
